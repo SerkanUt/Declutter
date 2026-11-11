@@ -12,11 +12,10 @@ export interface DailyWord {
 const pools = pool as Record<WordKind, string[]>
 
 /**
- * The 4 words for a date: one per category, picked from the build-time Wikipedia pool.
- * Deterministic (the pools were shuffled once at build time), so every user sees the same words
- * on a given day, past days always show the right words, and nothing needs to be stored.
- * Each pool walks its list in order, so a word doesn't repeat until the whole list has been used.
- * The offset keeps the four categories from cycling in lockstep.
+ * The 4 words for a date, one per category. The pools were shuffled once at build time and we
+ * just walk through them by day number, so everyone gets the same words on the same day and
+ * nothing has to be stored. A word won't repeat until its whole list is used up.
+ * The offset stops all four categories from lining up.
  */
 export function wordsForDate(key: string): DailyWord[] {
   const n = dayNumber(key)

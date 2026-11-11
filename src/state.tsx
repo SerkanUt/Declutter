@@ -39,7 +39,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     })()
   }, [reloadEntries])
 
-  // Roll "today" over at midnight, and when the app comes back to the foreground.
+  // Update "today" at midnight and when the app comes back to the foreground.
   useEffect(() => {
     const tick = () => setToday((t) => (toKey() === t ? t : toKey()))
     const id = setInterval(tick, 30_000)

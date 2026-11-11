@@ -26,8 +26,8 @@ export function EntryEditor({ date, variant }: Props) {
   const opened = entry.media.find((m) => m.id === openId) ?? null
   const full = variant === 'full'
 
-  // Where to put the caret after a word is inserted. Applied right after React commits the new text,
-  // so fast typing can't race it.
+  // Caret position after inserting a word. Applied once React has rendered the new text
+  // so fast typing doesn't beat it.
   const pendingCaret = useRef<number | null>(null)
   useLayoutEffect(() => {
     const el = area.current
@@ -53,7 +53,7 @@ export function EntryEditor({ date, variant }: Props) {
     if (!entry.hasContent) return toast('Write a line or add an image first.')
     const newly = await entry.save()
     if (!entry.canCount) return toast('Saved. Only today’s entry adds to your streak.')
-    // streaks.current is updated by the app state after the save; compute the optimistic number.
+    // streaks.current only updates after the save, so work out the new number here.
     const next = newly ? streaks.current + 1 : streaks.current
     toast(newly ? `Saved. Day ${next} of your streak.` : 'Saved.')
   }

@@ -14,7 +14,7 @@ export function Archive() {
   const [view, setView] = useState({ year: now.getFullYear(), month: now.getMonth() })
   const [thumbs, setThumbs] = useState<Record<string, string>>({})
 
-  // First image of each day becomes that day's thumbnail.
+  // first image of the day is the thumbnail
   useEffect(() => {
     let urls: string[] = []
     void (async () => {

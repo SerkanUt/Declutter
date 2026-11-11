@@ -141,7 +141,7 @@ export function SketchCanvas({ onDone, onCancel }: { onDone: (png: Blob) => void
     setDiscarding((d) => !d)
   }
 
-  // Export just the drawn area (with a margin) so thumbnails show the sketch, not a mostly empty page.
+  // Crop to the drawn area plus a margin so the thumbnail isn't mostly blank paper.
   const done = () => {
     const all = strokes.current
     if (all.length === 0) return onCancel()

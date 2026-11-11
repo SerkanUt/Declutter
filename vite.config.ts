@@ -27,7 +27,7 @@ export default defineConfig({
     }),
   ],
   preview: {
-    // A leading dot allows any *.trycloudflare.com tunnel, since the address changes every run.
+    // lets any *.trycloudflare.com tunnel through, the address changes each run
     allowedHosts: ['.trycloudflare.com'],
   },
 })

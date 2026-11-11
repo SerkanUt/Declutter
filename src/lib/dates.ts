@@ -1,5 +1,5 @@
-// All dates are local calendar days as "YYYY-MM-DD" keys.
-// We never divide milliseconds by 86,400,000 on local times, because DST makes days 23 or 25 hours long.
+// Dates are local "YYYY-MM-DD" strings.
+// Don't divide ms by 86,400,000 for local times, DST days are 23 or 25 hours.
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
@@ -12,7 +12,7 @@ export function parseKey(key: string): Date {
   return new Date(y, m - 1, d)
 }
 
-/** Whole days since 1970-01-01 for a key. Uses UTC so DST can't shift it. */
+/** Days since 1970-01-01. Goes through UTC so DST doesn't throw it off. */
 export function dayNumber(key: string): number {
   const [y, m, d] = key.split('-').map(Number)
   return Math.round(Date.UTC(y, m - 1, d) / 86_400_000)
@@ -29,7 +29,7 @@ export function addMonths(year: number, month: number, n: number): { year: numbe
   return { year: Math.floor(total / 12), month: ((total % 12) + 12) % 12 }
 }
 
-/** Sunday-first month grid (like the wireframe). Null cells pad the first and last week. */
+/** Month grid starting on Sunday. null = empty cell before/after the month. */
 export function monthGrid(year: number, month: number): (string | null)[] {
   const first = new Date(year, month, 1)
   const count = new Date(year, month + 1, 0).getDate()

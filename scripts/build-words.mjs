@@ -1,18 +1,17 @@
-// Builds src/data/words.json from Wikipedia article titles.
-// Uses the official MediaWiki Action API (no HTML scraping). Run: npm run words
-// The app itself never calls Wikipedia at runtime; it ships this JSON.
+// Builds src/data/words.json from Wikipedia article titles (MediaWiki API). Run: npm run words
+// The app doesn't call Wikipedia itself, it just ships the JSON.
 
 import { writeFile, mkdir } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const API = 'https://en.wikipedia.org/w/api.php'
-const UA = 'Decluttered-word-builder/0.1 (daily creative prompt app; contact utogluo@jgminnovation.org)'
-const PER_SOURCE_CAP = 30 // keeps big categories from dominating a pool; the most-viewed titles win
+const UA = 'Decluttered-word-builder/0.1'
+const PER_SOURCE_CAP = 30 // stops one big category taking over a pool, most-viewed titles win
 const MAX_LEN = 28
-// Minimum views over 60 days per word type; drops obscure titles. Colors and objects get far fewer views than films.
+// min views over 60 days per type, to skip obscure titles (colors and objects get way fewer views than films)
 const MIN_VIEWS = { color: 3500, movie: 25000, object: 5000, place: 20000 }
-// Titles that are technically articles but make poor prompts.
+// articles that exist but make bad prompts
 const BLOCK = new Set(['mise-en-scène', 'dakar rally', 'caracal', 'bactrian camel', 'bauhaus', 'evolution of deserts',
   'endorheic basin', 'wonders of the world', 'elephant', 'm*a*s*h', 'electric chair', 'ghost market', 'archipelago',
   'island', 'lake', 'desert', 'atoll', 'clock', 'theostein', 'up forest green', 'ani', 'gatto', 'fjord', 'hoppers',
@@ -111,8 +110,7 @@ async function pagesIn({ name, depth = 0 }) {
   return pages
 }
 
-// Total views over the last 60 days (official pageviews API via the Action API).
-// Popular titles are recognizable ones, which makes better prompts than obscure ones.
+// Views over the last 60 days. Popular titles are ones people know, so they make better prompts.
 async function viewsFor(titles) {
   const views = new Map()
   for (let i = 0; i < titles.length; i += 25) {
@@ -139,7 +137,7 @@ function clean(title, kind) {
   return display
 }
 
-// Small seeded PRNG so the output is reproducible run to run.
+// seeded PRNG so every run gives the same shuffle
 function mulberry32(a) {
   return () => {
     a |= 0; a = (a + 0x6d2b79f5) | 0

@@ -10,7 +10,7 @@ export interface Profile {
 export interface Entry {
   date: string // YYYY-MM-DD, the primary key
   text: string
-  /** Set when the user presses Save on the entry's own day. Only these days extend the streak. */
+  /** Set when Save is pressed on the entry's own day. Only those days count for the streak. */
   counted: boolean
   savedAt?: number
   updatedAt: number

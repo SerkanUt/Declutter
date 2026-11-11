@@ -7,7 +7,7 @@ interface Props {
   compact?: boolean
 }
 
-/** The day's four words as paper tags. A word turns "used" once it appears in the writing. */
+/** Today's four words as tags. A tag goes dark once its word is in the text. */
 export function WordChips({ words, text, onPick, compact }: Props) {
   const lower = text.toLowerCase()
   return (

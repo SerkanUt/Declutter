@@ -7,7 +7,7 @@ export interface MediaItem extends Media {
   url: string
 }
 
-/** Loads one day's entry and keeps it saved as the user types and adds media. */
+/** Loads one day's entry and autosaves as you type or add media. */
 export function useEntry(date: string) {
   const { today, entries, reloadEntries } = useApp()
   const [text, setTextState] = useState('')
@@ -24,7 +24,7 @@ export function useEntry(date: string) {
       return { ...m, url }
     })
 
-  // (Re)load whenever the date changes.
+  // reload when the date changes
   useEffect(() => {
     let alive = true
     setLoaded(false)
@@ -50,7 +50,7 @@ export function useEntry(date: string) {
       const { text: t, date: d } = latest.current
       const prev = await getEntry(d)
       const now = Date.now()
-      // A day with nothing left in it (text and images all removed) can't hold a streak.
+      // no text and no images left = no streak for that day
       const hasAny = t.trim().length > 0 || (await mediaForDate(d)).length > 0
       await putEntry({
         date: d,
@@ -64,7 +64,7 @@ export function useEntry(date: string) {
     [reloadEntries],
   )
 
-  // Flush a pending autosave if the user leaves mid-typing.
+  // save right away if they leave mid-typing
   useEffect(() => {
     const flush = () => {
       if (timer.current) {
@@ -117,7 +117,7 @@ export function useEntry(date: string) {
   const counted = entry?.counted ?? false
   const canCount = date === today
 
-  /** Marks the day complete. Only today's entry can extend the streak. Returns true when this save newly counted. */
+  /** Marks the day as done. Only today's entry extends the streak. Returns true if this save is the one that counted. */
   const save = async (): Promise<boolean> => {
     clearTimeout(timer.current)
     timer.current = undefined

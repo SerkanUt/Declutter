@@ -1,6 +1,6 @@
 const MAX_EDGE = 1600
 
-/** Downscale a photo so a year of entries doesn't fill the device. Keeps orientation and returns a JPEG. */
+/** Shrinks a photo so a year of entries doesn't eat up storage. Returns a JPEG. */
 export async function downscale(file: Blob): Promise<Blob> {
   const bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' })
   const scale = Math.min(1, MAX_EDGE / Math.max(bitmap.width, bitmap.height))

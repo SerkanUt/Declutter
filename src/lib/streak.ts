@@ -7,9 +7,9 @@ export interface Streaks {
 }
 
 /**
- * `days` are the dates that count toward the streak.
- * The current streak stays alive through today: if today isn't done yet, it counts back from yesterday,
- * so an empty today never breaks yesterday's run until midnight passes.
+ * `days` = dates that count toward the streak.
+ * If today isn't done yet we count back from yesterday, so the streak
+ * only breaks once midnight passes with nothing saved.
  */
 export function computeStreaks(days: Iterable<string>, today: string): Streaks {
   const set = new Set(days)

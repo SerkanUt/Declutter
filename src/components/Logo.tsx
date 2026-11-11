@@ -1,4 +1,4 @@
-// A tangled scribble that resolves into one clean line: "declutter".
+// scribble that straightens out into a line
 export function Logo({ size = 40 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 48 48" role="img" aria-label="Decluttered">

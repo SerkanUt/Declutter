@@ -1,6 +1,6 @@
 import { getProfile, saveProfile, type Profile } from './db'
 
-// A local convenience lock, not real security: it keeps the journal behind a PIN on this device.
+// Just a lock screen for this device, not real security.
 const enc = new TextEncoder()
 const toHex = (b: ArrayBuffer) => [...new Uint8Array(b)].map((x) => x.toString(16).padStart(2, '0')).join('')
 

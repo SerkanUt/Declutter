@@ -7,7 +7,7 @@ export function StreakBadge() {
   const prev = useRef(streaks.current)
   const [bump, setBump] = useState(false)
 
-  // A small spring when the streak goes up (after saving). Not on first render.
+  // little bounce when the streak goes up after saving (not on first render)
   useEffect(() => {
     if (streaks.current > prev.current) {
       setBump(true)

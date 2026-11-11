@@ -1,0 +1,58 @@
+:root {
+  /* paper */
+  --paper: #faf3e5;
+  --paper-2: #efe5d3;
+  --card: #fefbf4;
+  --line: #d9d0c0;
+
+  /* ink */
+  --ink: #111a2d;
+  --ink-2: #3e485b;
+  --ink-3: #586072;
+
+  /* cobalt */
+  --accent: #2d49c9;
+  --accent-press: #2034b4;
+  --accent-soft: #d8e4ff;
+  --on-accent: #fcf8f0;
+
+  --flame: #df5200;
+  --danger: #b00d10;
+
+  /* word tags + the darker folded corner for each */
+  --tag-color: #ffc4ca;
+  --tag-movie: #f9e093;
+  --tag-object: #bbe8c3;
+  --tag-place: #b8e1fa;
+  --fold-color: #bb8c91;
+  --fold-movie: #b3a068;
+  --fold-object: #85a78b;
+  --fold-place: #83a2b4;
+  --fold-used: #4f5666;
+
+  --rule: rgba(199, 218, 238, 0.75);
+
+  --font-display: 'Young Serif', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Hanken Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.5rem;
+
+  --gutter: 20px;
+  --radius: 16px;
+  --radius-sm: 12px;
+  --nav-h: 76px;
+
+  --shadow-1: 0 1px 1px rgba(59, 43, 13, 0.06), 0 2px 6px rgba(59, 43, 13, 0.06);
+  --shadow-2: 0 2px 4px rgba(59, 43, 13, 0.06), 0 10px 24px rgba(59, 43, 13, 0.1);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* noise texture for the paper */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .32 0 0 0 0 .2 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}

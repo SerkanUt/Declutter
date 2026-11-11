@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react'
 
-// One icon family: 24px grid, 1.75 stroke, round caps and joins.
+// all icons: 24px grid, 1.75 stroke
 const PATHS = {
   home: 'M4 11.2 12 4l8 7.2V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1z',
   journal: 'M6 3.5h10.5a1.5 1.5 0 0 1 1.5 1.5v14a1.5 1.5 0 0 1-1.5 1.5H6zM6 3.5v17M9.5 8.5h5M9.5 12h5',
